@@ -24,7 +24,10 @@ exports.getToken = (req, res) => {
     });
     
     // Create an access token which we will sign and return to the client
-    const token = new AccessToken(accountSid, apiKey, apiSecret, {identity: identity});
+   const token = new AccessToken(accountSid, apiKey, apiSecret, {
+  identity: identity,
+  ttl: 3600
+});
     token.addGrant(voiceGrant);
     
     const tokenString = token.toJwt();
